@@ -1,0 +1,17 @@
+{
+  "name": "test-xsuaa-token-8mins",
+  "version": "1.0.0",
+  "scripts": {
+    "start:app": "cds bind --profile hybrid --exec -- npm run start --prefix app",
+    "build": "mbt build",
+    "deploy": "cf deploy ./mta_archives/test-xsuaa-token-8mins_1.0.0.mtar",
+    "undeploy": "cf undeploy test-xsuaa-token-8mins --delete-services --delete-service-keys --delete-service-brokers"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "mbt": "^1.2.34"
+  }
+}

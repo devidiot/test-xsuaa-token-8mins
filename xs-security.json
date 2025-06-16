@@ -1,0 +1,13 @@
+{
+    "xsappname": "test-xsuaa-token-8mins",
+    "tenant-mode": "dedicated",
+    "oauth2-configuration": {
+        "token-validity": 480,
+        "refresh-token-validity": 480,
+        "redirect-uris": [
+            "https://*.cfapps.us10-001.hana.ondemand.com/**",
+            "https://*.applicationstudio.cloud.sap/**",
+            "http://localhost:*/**"
+        ]
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "welcomeFile": "/index.html",
+    "authenticationMethod": "route",
+    "logout": {
+        "logoutEndpoint": "/user/logout",
+        "logoutPage": "/logout.html"
+    },
+    "routes": [
+        {
+            "source": "^/index.html(.*)$",
+            "target": "/webapp/index.html$1",
+            "localDir": ".",
+            "cacheControl": "no-cache, no-store, must-revalidate",
+            "authenticationType": "xsuaa"
+        },
+        {
+            "source": "^/logout.html(.*)$",
+            "target": "/webapp/logout.html$1",
+            "localDir": ".",
+            "cacheControl": "no-cache, no-store, must-revalidate",
+            "authenticationType": "none"
+        },
+        {
+            "source": "^/(.*)$",
+            "target": "/webapp/$1",
+            "localDir": ".",
+            "cacheControl": "no-cache, no-store, must-revalidate",
+            "authenticationType": "xsuaa"
+        }
+    ]
+}

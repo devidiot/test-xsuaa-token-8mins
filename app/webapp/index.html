@@ -1,0 +1,67 @@
+<HTML>
+<head>
+    <title>AR Session Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="./Timer.js"></script>
+    <body style="margin: 0; overflow: hidden;">
+        <button id="btnStart">Start Interval</button>
+        <button id="btnStop">Stop Interval</button>
+        <pre id="info"></pre>
+        <pre id="cntInterval"></pre>
+        <button id="btnHello">Get HELLO JSON</button>
+        <pre id="hello"></pre>
+        <pre id="cntHello"></pre>
+    </body>
+    <script>
+        let timer = new Timer();
+        document.addEventListener('DOMContentLoaded', function() {
+
+            let cntInterval = 0;
+            let cntHello = 0;
+            let interval = undefined;
+
+            function printInfo() {
+                fetch('/info')
+                    .then(response => response.json())
+                    .then(data => {
+                        let json = JSON.stringify(data);
+                        json = json.replace(/\",/g, '\n');
+                        document.getElementById('info').innerText = json;
+                        document.getElementById('cntInterval').innerText = `Count: ${++cntInterval}`;
+                    })
+                    .catch(error => {
+                        console.error('Error during AJAX call:', error);
+                    });
+            }
+
+            // Add click event listener to the button
+            document.getElementById('btnStart').addEventListener('click', function () {
+                printInfo();
+                interval = timer.setInterval(() => {
+                    printInfo();
+                }, 5000);
+            });
+
+            // Add click event listener to the button
+            document.getElementById('btnStop').addEventListener('click', function () {
+                timer.clearInterval(interval);
+            });
+
+
+            // Add click event listener to the button
+            document.getElementById('btnHello').addEventListener('click', function() {
+                fetch('/hello.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        let json = JSON.stringify(data);
+                        json = json.replace(/\",/g, '\n');
+                        document.getElementById('hello').innerText = json;
+                        document.getElementById('cntHello').innerText = `Count: ${++cntHello}`;
+                    })
+                    .catch(error => {
+                        console.error('Error during AJAX call:', error);
+                    });
+            });
+        });
+    </script>
+</HTML>

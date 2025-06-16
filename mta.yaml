@@ -1,0 +1,35 @@
+_schema-version: '3.1'
+ID: test-xsuaa-token-8mins
+version: 1.0.0
+description: XSUAA Token Expiry Test for 8 minutes
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install --prefix app
+modules:
+
+  - name: test-xsuaa-token-8mins
+    type: approuter.nodejs
+    path: ./app
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 64M
+    properties:
+      SESSION_TIMEOUT: 5
+    requires:
+      - name: test-xsuaa-token-8mins-auth
+
+resources:
+  - name: test-xsuaa-token-8mins-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: test-xsuaa-token-8mins
+        tenant-mode: dedicated

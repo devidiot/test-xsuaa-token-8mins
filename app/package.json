@@ -1,0 +1,16 @@
+{
+  "name": "test-xsuaa-token-8mins",
+  "version": "1.0.0",
+  "main": "approuter.js",
+  "scripts": {
+    "start": "node ./approuter.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@sap/approuter": "^20.5.1",
+    "jwt-decode": "^4.0.0"
+  }
+}
