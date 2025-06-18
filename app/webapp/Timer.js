@@ -24,18 +24,20 @@ let Timer = function() {
 Timer.prototype = {
 
     setTimeout: function (callback, delay) {
-        let iId = `timer${++this._seq}`;
-        const sMsg = `${iId}-${delay}`;
-        this._timeouts[iId] = callback;
+        const sPrefix = "timer";
+        let sId = `${sPrefix}${++this._seq}`;
+        const sMsg = `${sId}/${delay}`;
+        this._timeouts[sId] = callback;
         this.oWorker.postMessage(sMsg);
     },
 
     setInterval: function (callback, interval) {
-        let iId = `interval${++this._seq}`;
-        const sMsg = `${iId}-${interval}`;
-        this._intervals[iId] = callback;
+        const sPrefix = "interval";
+        let sId = `${sPrefix}${++this._seq}`;
+        const sMsg = `${sId}/${interval}`;
+        this._intervals[sId] = callback;
         this.oWorker.postMessage(sMsg);
-        return iId;
+        return sId;
     },
 
     clearInterval: function (id) {
